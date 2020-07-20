@@ -1,0 +1,51 @@
+
+/* to create animation there are two types 1)hover & useing transition 2)keyframes by creating one using @keyframes, then specify element css following properties (animation-name , animation-duration) */
+
+
+@keyframes moveInLeft {
+    /*css properties at the beginning of the animation*/
+    /* positive x translate is to the right , negative is to left*/
+  0% {
+      opacity: 0;
+      transform: translateX(-10rem);
+      /* we can use rotate properties specifing degrees */
+  }
+ 80% {
+       transform: translateX(1rem);
+ }
+/* css properties at the end of the animation */
+ 100% {
+       opacity: 1;
+       transform: translateX(0);
+ }
+}
+
+@keyframes moveInRight {
+    /*css properties at the beginning of the animation*/
+  0% {
+      opacity: 0;
+      transform: translateX(10rem);
+  }
+ 80% {
+       transform: translateX(-1rem);
+ }
+/* css properties at the end of the animation */
+ 100% {
+       opacity: 1;
+       transform: translateX(0);
+ }
+}
+
+@keyframes moveInBottom {
+    /*css properties at the beginning of the animation*/
+  0% {
+      opacity: 0;
+      transform: translateY(3rem);
+  }
+ 
+/* css properties at the end of the animation */
+ 100% {
+       opacity: 1;
+       transform: translateX(0);
+ }
+}

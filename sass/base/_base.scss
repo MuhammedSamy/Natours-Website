@@ -1,0 +1,58 @@
+/* overwrite browser defaults using the universal selector */
+*,
+*::after,
+*::before {
+   margin: 0;
+   padding: 0;
+   box-sizing: inherit; /*force this parameter to be inherited from parent because by default this property is not inherited*/ 
+   
+}
+/* set font size of the root to use rem unit so it's easy to make responsive webpage in diffrent screen sizes changing the root font we use 10 so it easy to make rem units*/
+html {
+ font-size: 62.5% /*10px*/; /* set precentage of the browser default is better 10 px = 62.5% of 16 */
+ //this define what 1 rem is   (1rem = 16px)
+
+ //sort them from large to smaller screen so we pioritize the smaller screen effects
+
+ @include respond(tab-land) { //width < 1200
+    font-size: 56.25%; //1 rem = 9px, 9/16 = 56.25%
+
+}
+
+
+ @include respond(tab-port) { //width < 900
+     font-size: 50%; //1rem = 8px, 8/16 = 50%
+
+}
+
+
+@include respond(phone) { //width <600
+    font-size: 46%;
+}
+
+
+@include respond(big-desktop) { //width > 1800
+    font-size: 75%; //1rem = 12, 12/16 = 75%
+}
+ 
+}
+
+/* set values for the body which are inherited by inside elements*/
+body {
+  
+    box-sizing: border-box; /*border & padding are included in the width and height of an element*/
+    padding:3rem /*30px*/; /* padding not inherited ,but it applys padding around the entire body */
+    
+    //when screen width less than 900px remave the white padding
+    @include respond(tab-port) { //width < 900
+        padding: 0;
+   }
+
+}
+
+//when text selected
+::selection {
+
+    background-color: $color-primary;
+    color: $color-white;
+}

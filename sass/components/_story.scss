@@ -1,0 +1,101 @@
+.story {
+    width : 75%;
+    margin : 0 auto; //because it's block-element inside block-element
+    box-shadow: 0 3rem 6rem rgba($color-black, .1);
+    background-color: rgba($color-white, .6); //to make th bg-video apears clearly
+    border-radius: 3px;
+    padding: 6rem;
+    padding-left: 9rem; //6 + 3 of the photo shift left
+    font-size: $default-font-size;
+    transform: skewX(-12deg);
+
+    @include respond (tab-port) {
+        width: 100%;
+        padding: 4rem;
+        padding-left: 7rem;
+
+
+    }
+
+     @include respond (phone) {
+        transform: skewX(0);
+
+        //
+        padding: 1rem;
+        padding-left: 4rem;
+        padding-bottom: 2rem;
+        transform: skewX(0deg);
+        //
+     }
+
+
+    //photo with caption
+    &__shape {
+        width: 15rem;
+        height: 15rem;
+        float:left; //to make the rest of the content float around it
+        transform: translateX(-3rem) skewX(12deg); //shift the circle of the photo to the left
+         //to re adjust the -12deg skewx in the story selector
+         position: relative;
+         overflow: hidden;
+         border-radius: 50%;
+
+         @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+            -webkit-clip-path: circle(50% at 50% 50%);
+            clip-path: circle(50% at 50% 50%); 
+            -webkit-shape-outside: circle(50% at 50% 50%);
+            shape-outside: circle(50% at 50% 50%); //50% of the shape height and width redius & the middle , must be floated & must have height and width
+            border-radius: none;
+        }
+
+         @include respond (phone) {
+            transform:translateX(-3rem) skewX(0);
+         }
+    
+    }
+    &__img{
+        height: 100%; //100% of the parent (15 rem)
+        transform: translateX(-4rem) scale(1.4);//to ceter the image // to make zoom out
+        backface-visibility: hidden; //when any transform make bad things
+        transition: all .5s;
+
+    }
+
+    &__text {
+        transform: skewX(12deg);
+        @include respond (phone) {
+            transform:skewX(0);
+            
+         }
+    }
+
+    &__caption {
+        //make caption invisible and set on the bottom before it hover, so when it hovered it animates
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 20%);
+        color:$color-white;
+        text-transform: uppercase;
+        font-size: 1.7rem;
+        text-align: center;
+        opacity: 0;
+        transition: all .5s;
+        backface-visibility: hidden;
+        //
+        @include respond (phone) {
+            text-align: center;
+         }//
+    }
+    &:hover &__caption {
+        opacity: 1;
+        transform: translate(-50%,-50%); //any translate done from the initial state not the last specified
+    }
+
+    &:hover &__img {
+        transform: translateX(-4rem) scale(1);
+        filter: blur(3px) brightness(80%);
+        //lower 100% make darker and more thatn 100% make it brighter
+    }
+
+}

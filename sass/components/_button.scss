@@ -1,0 +1,116 @@
+/* pesudo selector to specifiy properties to selector at specifi conditions */
+
+.btn {
+    /*specify proberties on buttoon when it's link or it is clicked before (default blue then converted to red*/
+    &,
+    &:link,
+    &:visited {
+       text-transform: uppercase; /* make text uppercase*/
+       text-decoration: none; /*remove the red and blue and the under dash*/
+       padding: 1.5rem 4rem; /* text padding from the buttom outlines (top-bottem  left-right) */
+       display: inline-block; /*to make it take newline and all width*/
+       border-radius: 10rem; /*make buttom border rounded*/
+       transition: all .2s; /*simple animation*/
+       position: relative; /*to make the after element hidden with respect to the button*/
+       font-size: $default-font-size;
+
+       //Change for <button> element 
+       border: none;
+       cursor: pointer;
+    }
+    
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 1rem 2rem rgba($color-black,.2); /*shadow for the element (x value, y value, blur value, rgba color)*/
+    
+        /*after button "when only on hover state"*/
+    &::after {
+        /*scale the after to make if apear from the button because it was hidden */
+        transform: scaleX(1.4) scaleY(1.6);
+        opacity: 0; /*to make fade out*/
+    
+    }
+        
+    }
+    &:active,
+    &:focus {
+        outline: none;
+        /*reduce the elevation and the shadow when pressed to make it seems to go down when clicked after it goes up when hover*/
+        transform: translateY(-1px);
+        box-shadow: 0 .5rem 1rem rgba($color-black,.2);
+    }
+    
+    &--white {
+        background-color:$color-white;
+        color: $color-gray-dark;
+    
+        /* specify after color*/
+    &::after {
+        background-color: $color-white;
+    }
+    
+    }
+
+    &--green {
+        background-color:$color-primary;
+        color: $color-white;
+    
+        /* specify after color*/
+    &::after {
+        background-color: $color-primary;
+    }
+    
+    }
+    
+    /* pesudo element :: to add new element to the right child of the bottom */
+    &::after {
+      content: "";
+      display: inline-block;
+      height: 100%;
+      width: 100%;
+      border-radius: 10rem;
+      /*make it hidden */
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      /* make smoth transition when element's value changed */
+      transition: all .4s;
+    }
+    
+    
+    
+    &--animated {
+        animation: moveInBottom .5s ease-out .75s; /* .75s delay*/
+        animation-fill-mode: backwards; /*apply animation intiall 0% before the animation starts , to make the button invisible before the animation starts.*/
+    }
+    
+    }
+
+    .btn-text {
+        &:link,
+        &:visited {
+            font-size: $default-font-size;
+            color: $color-primary;
+            display: inline-block;
+            text-decoration: none;
+            border-bottom: 1px solid $color-primary; // so we can make padding from the text
+            padding: 3px;
+            transition: all .2s;
+            border-radius: 0;
+
+        }
+
+        &:hover {
+            background-color: $color-primary;
+            color: $color-white;
+            box-shadow: 0 1rem 2rem rgba($color-black,.15);
+            transform: translateY(-2px);
+            
+        }
+
+        &:active {
+            box-shadow: 0 .5rem 1rem rgba($color-black,.15);
+            transform: translateY(0);
+        }
+    }

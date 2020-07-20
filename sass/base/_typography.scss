@@ -1,0 +1,104 @@
+
+/* set values for the body which are inherited by inside elements*/
+body {
+    font-family: "Lato",sans-serif;
+    font-weight: 400;
+    /*font-size: 16px;*/
+    line-height: 1.7; /* 170% of the default value*/
+    color: $color-gray-dark; /*set text color*/
+    //padding:3rem /*30px*/; /* padding not inherited ,but it applys padding around the entire body */
+   
+}
+
+
+
+.heading-primary {
+    color: $color-white;
+    text-transform: uppercase;
+
+    backface-visibility: hidden; /*to fix the little shaking happens at the end of the animation*/
+    margin-bottom:6rem /* 60px*/; /*to give space far from the bottom */
+
+    &--main{
+        display: block; /* block to make it occupy all width and make breakline*/
+        font-size: 6rem /*60px*/;
+        font-weight: 400;
+        letter-spacing: 3.5rem/*35px*/;
+        
+        animation-name: moveInLeft;
+        animation-duration: 1s;
+        animation-timing-function: ease-in; /* the animation starts faster then goes slower   */
+
+        //when screen is phone width we decrease the main font letter spacing and size
+        @include respond (phone) {
+            letter-spacing: 1rem;
+            font-size: 5rem;
+        }
+        
+        /*
+        animation-delay: 3s; /* 3s delay before starting the animation*/
+        /*animation-iteration-count: 3;*/  /*do the animation 3  times */
+        
+        }
+        
+        &--sub{
+        display: block; /* block to make it occupy all width and make breakline to make text in two lines*/
+        font-size: 2rem /* 20px*/;
+        font-weight: 700;
+        letter-spacing:1.74rem /*17.4px*/;
+        animation-name: moveInRight;
+        animation-duration: 1s;
+        animation-timing-function: ease-out;
+
+        @include respond (phone) {
+            letter-spacing: .5rem;
+        }
+        /*animation: moveInRight 1s ease-out; another notation */
+
+
+        
+        }
+}
+
+.heading-secondary {
+      font-size: 3.5rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      //making background color gridient, then make it inline block so the background occupies the width of the text only , then clip to make the backgrond clipped whrtr the text exactly in , then make font color to transparent so the background gradient appears
+      display: inline-block ;
+      background-image:linear-gradient(to right, $color-primary-light, $color-primary-dark) ;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: .2rem;
+      //make transition happens in given time not immeditally to give cool animation
+      transition: all .2s;
+
+      @include respond (tab-port) {
+          font-size: 3rem;
+      }
+
+      @include respond (phone) {
+        font-size: 2.5rem;
+    }
+
+
+      &:hover {
+         transform:skewY(2deg) skewX(15deg) scale(1.1)  ;
+         text-shadow: .5rem 1rem 2rem rgba($color-black, .2) ;
+         //text-shadow x then y then blur then the color
+
+      }
+}
+
+.heading-tertiary {
+   font-size: $default-font-size;
+   font-weight: 700;
+   text-transform: uppercase;
+}
+
+.paragraph {
+    font-size: $default-font-size;
+    &:not(:last-child){
+        margin-bottom: 3rem;
+    }
+}
