@@ -495,9 +495,7 @@ body {
   padding: 6rem;
   padding-left: 9rem;
   font-size: 1.6rem;
-  transform: skewX(-12deg);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden; }
+  transform: skewX(-12deg); }
   @media only screen and (max-width: 56.25em) {
     .story {
       width: 100%;
@@ -531,7 +529,6 @@ body {
   .story__img {
     height: 100%;
     transform: translateX(-4rem) scale(1.4);
-    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     transition: all .5s; }
   .story__text {
@@ -550,7 +547,6 @@ body {
     text-align: center;
     opacity: 0;
     transition: all .5s;
-    -webkit-backface-visibility: hidden;
     backface-visibility: hidden; }
     @media only screen and (max-width: 37.5em) {
       .story__caption {
@@ -954,9 +950,10 @@ body {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 1500;
   opacity: 0;
   width: 0;
-  transition: all 0.45s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   pointer-events: none; }
 
 .navigation__list {
@@ -965,11 +962,24 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   list-style: none;
-  text-align: center;
+  text-align: start;
   width: 100%; }
 
 .navigation__item {
-  margin: 1rem; }
+  margin: 1rem;
+  transform: translate(40%, 50%); }
+  @media only screen and (max-width: 75em) {
+    .navigation__item {
+      transform: translate(38%, 45%); } }
+  @media only screen and (max-width: 56.25em) {
+    .navigation__item {
+      transform: translate(35%, 30%); } }
+  @media only screen and (max-width: 37.5em) {
+    .navigation__item {
+      transform: translate(30%, -10%); } }
+  @media only screen and (max-width: 28rem) {
+    .navigation__item {
+      transform: translate(15%, -10%); } }
 
 .navigation__link:link, .navigation__link:visited {
   display: inline-block;
@@ -997,11 +1007,7 @@ body {
 .navigation__checkbox:checked ~ .navigation__nav {
   opacity: 1;
   width: 100%;
-  pointer-events: auto;
-  z-index: 1500; }
-
-.navigation__checkbox:checked .navigation__item {
-  opacity: 1; }
+  pointer-events: auto; }
 
 .navigation__icon {
   position: relative;
